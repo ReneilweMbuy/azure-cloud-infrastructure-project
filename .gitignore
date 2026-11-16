@@ -1,0 +1,21 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Azure local configuration
+.azure/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated ARM templates
+main.json
+network.json
