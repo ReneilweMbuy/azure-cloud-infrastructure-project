@@ -1,0 +1,32 @@
+name: Bicep Infrastructure CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-bicep:
+    name: Build and Validate Bicep
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Bicep CLI
+        run: |
+          az bicep install
+          az bicep version
+
+      - name: Build main Bicep template
+        run: az bicep build --file main.bicep --stdout > /dev/null
+
+      - name: Build network Bicep template
+        run: az bicep build --file network.bicep --stdout > /dev/null
